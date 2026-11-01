@@ -3,11 +3,21 @@ import type { NextRequest } from 'next/server';
 import { ApiError } from '@/lib/api/errors';
 import { GET, POST } from './route';
 
-const requireAdminSessionMock = vi.fn();
-const supabaseServiceRoleMock = vi.fn();
-const listAdminProjectTypesMock = vi.fn();
-const createProjectTypeMock = vi.fn();
-const validateProjectTypePayloadMock = vi.fn();
+const {
+  requireAdminSessionMock,
+  supabaseServiceRoleMock,
+  listAdminProjectTypesMock,
+  createProjectTypeMock,
+  validateProjectTypePayloadMock,
+  revalidatePublicSiteMock,
+} = vi.hoisted(() => ({
+  requireAdminSessionMock: vi.fn(),
+  supabaseServiceRoleMock: vi.fn(),
+  listAdminProjectTypesMock: vi.fn(),
+  createProjectTypeMock: vi.fn(),
+  validateProjectTypePayloadMock: vi.fn(),
+  revalidatePublicSiteMock: vi.fn(),
+}));
 
 vi.mock('@/lib/auth/admin', () => ({
   requireAdminSession: requireAdminSessionMock,
@@ -26,6 +36,10 @@ vi.mock('@/lib/validators/project-types', () => ({
   validateProjectTypePayload: validateProjectTypePayloadMock,
 }));
 
+vi.mock('@/lib/revalidate', () => ({
+  revalidatePublicSite: revalidatePublicSiteMock,
+}));
+
 vi.mock('@/lib/utils/logger', () => ({
   logError: vi.fn(),
   logWarning: vi.fn(),
@@ -37,6 +51,7 @@ describe('admin project-types API routes', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     supabaseServiceRoleMock.mockReturnValue({});
+    requireAdminSessionMock.mockResolvedValue({});
   });
 
   describe('GET', () => {
@@ -85,6 +100,7 @@ describe('admin project-types API routes', () => {
       await expect(response.json()).resolves.toEqual(createdType);
       expect(validateProjectTypePayloadMock).toHaveBeenCalledWith(requestPayload);
       expect(createProjectTypeMock).toHaveBeenCalledWith(expect.anything(), sanitizedPayload);
+      expect(revalidatePublicSiteMock).toHaveBeenCalledTimes(1);
     });
 
     it('returns validation errors when payload invalid', async () => {

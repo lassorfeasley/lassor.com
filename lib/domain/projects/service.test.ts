@@ -5,15 +5,17 @@ import {
   listPublishedProjects,
 } from '@/lib/domain/projects/service';
 import type { TypedSupabaseClient } from '@/lib/supabase/types';
+import type { ProjectRow, ProjectTypeRow } from '@/lib/domain/projects/types';
 import { ApiError, NotFoundError } from '@/lib/api/errors';
 import { createProjectRow, createProjectTypeRow } from '@/lib/test-utils';
 
 describe('projects service', () => {
   it('listPublishedProjects returns summaries with project type metadata', async () => {
     const mockType = createProjectTypeRow();
-    const mockRow = createProjectRow({
+    const mockRow = {
+      ...createProjectRow(),
       project_types: mockType,
-    }) as ProjectRow & { project_types: ProjectTypeRow };
+    } as ProjectRow & { project_types: ProjectTypeRow };
 
     const builder = {
       select: vi.fn().mockReturnThis(),

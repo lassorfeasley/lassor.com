@@ -188,7 +188,7 @@ export function useRetroWindowInteraction(options: Options) {
   const handleWindowMouseDown = useCallback(
     (event: React.MouseEvent) => {
       const target = event.target as HTMLElement | null;
-      if (target?.closest('a, .link-block')) return;
+      if (target?.closest('a, .plain-link')) return;
       bringToFront();
     },
     [bringToFront]

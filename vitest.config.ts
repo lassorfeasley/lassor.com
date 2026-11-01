@@ -9,12 +9,14 @@ export default defineConfig({
   },
   test: {
     environment: 'node',
-    include: ['lib/**/*.test.ts'],
+    include: ['lib/**/*.test.ts', 'app/**/*.test.ts'],
     coverage: {
       enabled: true,
       provider: 'istanbul',
       reporter: ['text', 'lcov'],
       include: ['lib/validators/**/*.ts', 'lib/domain/**/*.ts', 'app/api/admin/**/*.ts'],
+      // Instrumenting test files breaks vi.mock hoisting.
+      exclude: ['**/*.test.ts'],
     },
   },
 });

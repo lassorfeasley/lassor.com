@@ -48,7 +48,7 @@ export default function HomeDesktop({
     id: '',
     windowTitle: 'Lassor_headshot.jpg',
     heroText: 'Hi! I am Lassor Feasley. I am a product designer, entrepreneur, and the cofounder and CEO of Renewables.org, the Global South crowdfunding nonprofit. Take a look around!',
-    heroImageUrl: 'https://cdn.prod.website-files.com/5e9a6fed9ba599718ff8fdb0/67e33283b8d549afbb87ff55_1658416295792-1.jpeg',
+    heroImageUrl: 'https://dg30gorml6czaeea.public.blob.vercel-storage.com/projects/projects/homepage/hero/1765261996110-27a3tb.jpeg',
     footerLinkText: 'Lassor is face-blind. Learn more →',
     footerLinkHref: '/faceblind',
   };
@@ -125,19 +125,19 @@ export default function HomeDesktop({
 
   return (
     <div className="globalmargin">
-      <header className="topbar w-nav">
-        <div className="h _10 wide" style={{ display: 'flex', alignItems: 'center' }}>
+      <header className="topbar">
+        <div className="hstack gap-sm wide" style={{ display: 'flex', alignItems: 'center' }}>
           <LassorGlyph />
           <div className="paragraph header">LassorOS</div>
         </div>
-        <div className="h _15">
-          <a href="tel:9178434496" className="link-block-3 w-inline-block">
+        <div className="hstack gap-md">
+          <a href="tel:9178434496" className="plain-link block-link">
             <div className="icon"></div>
           </a>
-          <a href="https://meetings.hubspot.com/lfeasley" target="_blank" rel="noreferrer" className="link-block-3 w-inline-block">
+          <a href="https://meetings.hubspot.com/lfeasley" target="_blank" rel="noreferrer" className="plain-link block-link">
             <div className="icon"></div>
           </a>
-          <a href="mailto:feasley@lassor.com?subject=Positive%20vibes" className="link-block-3 w-inline-block">
+          <a href="mailto:feasley@lassor.com?subject=Positive%20vibes" className="plain-link block-link">
             <div className="icon"></div>
           </a>
         </div>
@@ -153,14 +153,14 @@ export default function HomeDesktop({
               <SiteImage
                 src={displayHeroContent.heroImageUrl}
                 alt="Portrait of Lassor Feasley"
-                className="image-2 max-with"
+                className="hero-image narrow"
                 width={800}
                 height={800}
                 sizes="(max-width: 768px) 90vw, 400px"
                 priority={false}
               />
               {displayHeroContent.footerLinkText && displayHeroContent.footerLinkHref && (
-                <Link href={displayHeroContent.footerLinkHref} className="link-block-4 w-inline-block">
+                <Link href={displayHeroContent.footerLinkHref} className="plain-link block-link">
                   <div className="navlink light">{displayHeroContent.footerLinkText}</div>
                 </Link>
               )}
@@ -175,10 +175,10 @@ export default function HomeDesktop({
       {SHOW_FEATURED_BROWSER ? <FeaturedBrowserWindow /> : null}
 
       <section className="windowcanvas search">
-        <div className="h search">
-          <form className="form-block w-form" onSubmit={(event) => event.preventDefault()}>
+        <div className="hstack search">
+          <form className="form-block" onSubmit={(event) => event.preventDefault()}>
             <input
-              className="search jetboost-list-search-input-lkmq w-input"
+              className="search search-input"
               maxLength={256}
               name="search"
               placeholder="Search projects"
@@ -186,16 +186,16 @@ export default function HomeDesktop({
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
             />
-            <input type="submit" value="Search" className="submit-button w-button" />
+            <input type="submit" value="Search" className="submit-button" />
           </form>
-          <div className="jetboost-filter-wzyl w-dyn-list">
-            <div className="h _15 wrap w-dyn-items">
+          <div className="category-filter">
+            <div className="hstack gap-md wrap">
               {filterOptions.map((option) => (
                 <button
                   key={option.slug ?? 'all'}
                   type="button"
                   onClick={() => handleFilterClick(option.slug)}
-                  className={`button w-button${activeCategory === option.slug ? ' is-active jetboost-filter-active' : ''}`}
+                  className={`button${activeCategory === option.slug ? ' is-active' : ''}`}
                   aria-pressed={activeCategory === option.slug}
                 >
                   {option.label}
@@ -217,19 +217,19 @@ export default function HomeDesktop({
       ) : null}
 
       <section className="windowcanvas">
-        <div className="jetboost-list-wrapper-lkmq jetboost-list-wrapper-wzyl w-dyn-list">
-          <div role="list" className="cluttered-desktop-container w-dyn-items">
+        <div className="project-list">
+          <div role="list" className="cluttered-desktop-container">
             {filteredProjects.length === 0 ? (
-              <div className="retro-window-placeholder w-dyn-item">
+              <div className="retro-window-placeholder">
                 <RetroWindow title="Nothing to show" disableDrag disableResize>
                   <div className="paragraph">{emptyStateMessage}</div>
                 </RetroWindow>
               </div>
             ) : (
               filteredProjects.map((project) => (
-                <div key={project.id ?? project.slug} role="listitem" className="retro-window-placeholder w-dyn-item">
+                <div key={project.id ?? project.slug} role="listitem" className="retro-window-placeholder">
                   <RetroWindow title={project.name ?? 'Untitled project'}>
-                    <div className="v _5">
+                    <div className="vstack gap-xs">
                       {project.description ? <div className="paragraph mxht">{project.description}</div> : null}
                     <div className="paragraph mxht learn-more">
                       <Link href={`/work/${project.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -258,34 +258,17 @@ export default function HomeDesktop({
 }
 
 function FolderGrid({ links }: { links: FolderLink[] }) {
-  // Debug: Log all folder links data
-  console.log('🔍 FolderGrid - All links:', links);
-  console.log('🔍 FolderGrid - Links count:', links.length);
-  links.forEach((link, index) => {
-    console.log(`🔍 FolderGrid - Link ${index}:`, {
-      id: link.id,
-      label: link.label,
-      icon: link.icon,
-      iconType: typeof link.icon,
-      iconLength: link.icon?.length,
-      iconCharCodes: link.icon ? Array.from(link.icon).map(c => c.charCodeAt(0).toString(16)) : null,
-      iconJSON: JSON.stringify(link.icon),
-      href: link.href,
-      external: link.external,
-    });
-  });
-
   return (
     <div className="folder-grid">
       {links.map((link) => (
         <div key={link.id} className="icon-placeholder">
           <div className="draggable-folder">
             {link.external ? (
-              <a href={link.href} target="_blank" rel="noreferrer" className="iconlink w-inline-block">
+              <a href={link.href} target="_blank" rel="noreferrer" className="iconlink block-link">
                 <FolderLinkContent icon={link.icon} label={link.label} />
               </a>
             ) : (
-              <Link href={link.href} className="iconlink w-inline-block">
+              <Link href={link.href} className="iconlink block-link">
                 <FolderLinkContent icon={link.icon} label={link.label} />
               </Link>
             )}
@@ -297,18 +280,6 @@ function FolderGrid({ links }: { links: FolderLink[] }) {
 }
 
 function FolderLinkContent({ icon, label }: { icon: string; label: string }) {
-  // Debug: Log individual icon data
-  console.log(`🔍 FolderLinkContent - "${label}":`, {
-    icon,
-    iconType: typeof icon,
-    iconLength: icon?.length,
-    iconCharCodes: icon ? Array.from(icon).map(c => `U+${c.charCodeAt(0).toString(16).toUpperCase().padStart(4, '0')}`) : null,
-    iconJSON: JSON.stringify(icon),
-    iconEscaped: icon ? icon.replace(/[\u0000-\u001F\u007F-\u009F]/g, (c) => `\\u${c.charCodeAt(0).toString(16).padStart(4, '0')}`) : null,
-    isEmpty: !icon || icon.length === 0,
-    isWhitespace: icon ? /^\s*$/.test(icon) : false,
-  });
-
   return (
     <>
       <div className="folder" data-debug-icon={JSON.stringify(icon)} data-debug-label={label}>

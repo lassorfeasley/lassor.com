@@ -14,10 +14,6 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "cdn.prod.website-files.com",
-      },
-      {
-        protocol: "https",
         hostname: "*.public.blob.vercel-storage.com",
       },
     ],
@@ -41,10 +37,9 @@ const nextConfig: NextConfig = {
       basePath: false as const,
     });
     return [
-      // Root-relative assets and API calls hard-coded in the original site
-      // (scripts, stylesheets, Webflow exports, admin fetches). Temporary
-      // redirects keep the method and body, so API POSTs survive.
-      ...["js", "css", "webflow", "api"].map((dir) => toOriginal(`/${dir}/:path*`)),
+      // Root-relative scripts and API calls hard-coded in the original site.
+      // Temporary redirects keep the method and body, so API POSTs survive.
+      ...["js", "api"].map((dir) => toOriginal(`/${dir}/:path*`)),
       toOriginal("/:icon(apple-touch-icon\\.png|favicon-16x16\\.png|favicon-32x32\\.png)", `${BASE}/:icon`),
       // Legacy password-reset links land on the homepage with ?code=.
       {

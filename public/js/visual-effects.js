@@ -1,7 +1,7 @@
 /* === BUNDLE: visual-effects.js === */
 /* Combined: breathing-shadow-apply.js, drag-echo-effect.js, pixel-image-load-effect.js, window-randomizer.js, drag-and-drop-icons.js */
 
-/* === Causes active window to have a breathing shadow effect (the effect is stored in webflow) === */
+/* === Causes active window to have a breathing shadow effect (keyframes live in app/styles/site.css) === */
 
 // Function: Find window with highest z-index
 function findTopWindow(windows) {

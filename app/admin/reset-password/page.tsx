@@ -26,8 +26,7 @@ function ResetPasswordForm() {
     const supabase = supabaseBrowser();
     
     // Listen for auth state changes (triggered when Supabase processes URL hash tokens)
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      console.log('[Reset Password] Auth event:', event, 'Session:', !!session);
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
       if (event === 'PASSWORD_RECOVERY' || event === 'SIGNED_IN') {
         setIsValidToken(true);
       } else if (event === 'SIGNED_OUT') {
@@ -38,7 +37,6 @@ function ResetPasswordForm() {
     // Also check current session immediately
     const checkSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
-      console.log('[Reset Password] Initial session check:', !!session);
       // Only set if we haven't already got a valid token from auth state change
       if (isValidToken === null) {
         setIsValidToken(!!session);

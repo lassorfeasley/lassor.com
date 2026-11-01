@@ -1,7 +1,3 @@
-@import url('./styles/webflow-shared.css');
-@import url('./styles/pixel-effect-styling.css');
-@import url('./styles/retro-window-lightbox-styling.css');
-@import url('./styles/scroll-bars.css');
 @import url('./styles/featured-browser.css');
 
 @tailwind base;

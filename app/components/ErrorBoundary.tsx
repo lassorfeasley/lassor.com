@@ -62,7 +62,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
                     </pre>
                   </details>
                 ) : null}
-                <Link href="/" className="link-block-4 w-inline-block" style={{ textDecoration: 'underline' }}>
+                <Link href="/" className="plain-link block-link" style={{ textDecoration: 'underline' }}>
                   Return to home →
                 </Link>
               </div>

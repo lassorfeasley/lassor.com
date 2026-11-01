@@ -51,9 +51,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       <main className="retro-root">
         <div className="globalmargin">
           <div className="topbar">
-            <Link href="/" className="h _5 link w-inline-block"><div>Lassor.com</div><div>→</div></Link>
-            <Link href="/work" className="h _5 link w-inline-block"><div>Work</div><div>→</div></Link>
-            <div className="h _5 link"><div className="text-block-5">{slug}</div></div>
+            <Link href="/" className="hstack gap-xs link block-link"><div>Lassor.com</div><div>→</div></Link>
+            <Link href="/work" className="hstack gap-xs link block-link"><div>Work</div><div>→</div></Link>
+            <div className="hstack gap-xs link"><div className="breadcrumb-current">{slug}</div></div>
           </div>
           <div className="windowcanvas">
             <div className="retro-window-placeholder">
@@ -112,13 +112,13 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       <div className="globalmargin">
         {/* Top navigation bar */}
         <div className="topbar">
-          <Link href="/" className="h _5 link w-inline-block"><div>Lassor.com</div><div>→</div></Link>
-          <Link href={projectTypeHref} className="h _5 link w-inline-block"><div>{projectTypeName}</div><div>→</div></Link>
-          <div className="h _5 link"><div className="text-block-5">{project.name}</div></div>
+          <Link href="/" className="hstack gap-xs link block-link"><div>Lassor.com</div><div>→</div></Link>
+          <Link href={projectTypeHref} className="hstack gap-xs link block-link"><div>{projectTypeName}</div><div>→</div></Link>
+          <div className="hstack gap-xs link"><div className="breadcrumb-current">{project.name}</div></div>
         </div>
 
         <div className="windowcanvas">
-          <div className="onetwogrid _40">
+          <div className="onetwogrid spaced">
             <div className="retro-window-placeholder">
               <RetroWindow title={project.name ?? ''} className="nomax noscrollonm">
                 {project.description ? <div className="paragraph">{project.description}</div> : null}
@@ -135,7 +135,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 ) : null}
                 {project.video_url ? (
                   <div className="videowrapper">
-                    <div className="video w-video w-embed" style={{ maxHeight: 'none', height: 'auto' }}>
+                    <div className="video video-embed" style={{ maxHeight: 'none', height: 'auto' }}>
                       <iframe
                         src={toEmbedUrl(project.video_url) ?? undefined}
                         title={project.name ?? 'video'}
@@ -167,12 +167,12 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               <div className="retro-window-placeholder" style={{ marginTop: 120, height: 'fit-content' }}>
                 <RetroWindow title="Process and context" className="doublewide noratio">
                   {(project.process_and_context_html ?? '').trim() !== '' ? (
-                    <div className="v _10">
-                      <div className="paragraph w-richtext" dangerouslySetInnerHTML={{ __html: project.process_and_context_html as string }} />
+                    <div className="vstack gap-sm">
+                      <div className="paragraph rich-text" dangerouslySetInnerHTML={{ __html: project.process_and_context_html as string }} />
                     </div>
                   ) : null}
                   {Array.isArray(project.process_image_urls) && project.process_image_urls.length > 0 ? (
-                    <div className="v _10">
+                    <div className="vstack gap-sm">
                       {project.process_images_label ? <div className="captionlable">{project.process_images_label}</div> : null}
                       <div className="gallery">
                         <LightboxGallery images={project.process_image_urls} />
@@ -190,12 +190,12 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               <div className="retro-window-placeholder">
                 <RetroWindow title="Process and context" className="doublewide noratioonm">
                   {(project.process_and_context_html ?? '').trim() !== '' ? (
-                    <div className="v _10">
-                      <div className="paragraph w-richtext" dangerouslySetInnerHTML={{ __html: project.process_and_context_html as string }} />
+                    <div className="vstack gap-sm">
+                      <div className="paragraph rich-text" dangerouslySetInnerHTML={{ __html: project.process_and_context_html as string }} />
                     </div>
                   ) : null}
                   {Array.isArray(project.process_image_urls) && project.process_image_urls.length > 0 ? (
-                    <div className="v _10">
+                    <div className="vstack gap-sm">
                       {project.process_images_label ? <div className="captionlable">{project.process_images_label}</div> : null}
                       <div className="gallery">
                         <LightboxGallery images={project.process_image_urls} />
@@ -212,14 +212,14 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
         {/* Articles section - three column grid */}
         {articles.length > 0 ? (
-          <div className="windowcanvas w-dyn-list" style={{ height: 'fit-content', minHeight: 'auto' }}>
-            <div role="list" className="desktopgrid w-dyn-items" style={{ alignItems: 'start' }}>
+          <div className="windowcanvas" style={{ height: 'fit-content', minHeight: 'auto' }}>
+            <div role="list" className="desktopgrid" style={{ alignItems: 'start' }}>
               {articles.map((article) => {
                 const articleTitle = article.title || article.name || 'Article';
                 const publicationName = article.publication || 'Article';
                 const contentEl = (
                   <>
-                    <div className="v _10">
+                    <div className="vstack gap-sm">
                       <div className="paragraph homepage">{articleTitle}</div>
                       {article.url ? (
                         <div className="paragraph mxht learn-more">
@@ -239,7 +239,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                   </>
                 );
                 return (
-                  <div key={article.id} role="listitem" className="retro-window-placeholder w-dyn-item" style={{ height: 'fit-content' }}>
+                  <div key={article.id} role="listitem" className="retro-window-placeholder" style={{ height: 'fit-content' }}>
                     <div id="draggable-window" className="retro-window" style={{ height: 'fit-content' }}>
                       <div className="window-bar">
                         <div className="paragraph wide">{publicationName}</div>
@@ -251,7 +251,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                             href={article.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="window-content w-inline-block"
+                            className="window-content block-link"
                           >
                             {contentEl}
                           </a>

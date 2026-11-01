@@ -48,9 +48,9 @@ export default async function ProjectTypePage({ params }: { params: Promise<{ sl
       <main className="retro-root">
         <div className="globalmargin">
           <div className="topbar">
-            <Link href="/" className="h _5 link w-inline-block"><div>Lassor.com</div><div>→</div></Link>
-            <Link href={`/project-types/${slug}`} className="h _5 link w-inline-block"><div>Collections</div><div>→</div></Link>
-            <div className="h _5 link"><div className="text-block-5">{slug}</div></div>
+            <Link href="/" className="hstack gap-xs link block-link"><div>Lassor.com</div><div>→</div></Link>
+            <Link href={`/project-types/${slug}`} className="hstack gap-xs link block-link"><div>Collections</div><div>→</div></Link>
+            <div className="hstack gap-xs link"><div className="breadcrumb-current">{slug}</div></div>
           </div>
           <div className="windowcanvas">
             <div className="retro-window-placeholder">
@@ -92,14 +92,13 @@ export default async function ProjectTypePage({ params }: { params: Promise<{ sl
     <main className="retro-root">
       <div className="globalmargin">
         <div className="topbar">
-          <Link href="/" className="h _5 link w-inline-block"><div>Lassor.com</div><div>→</div></Link>
-          <Link href={`/project-types/${typeData.slug}`} className="h _5 link w-inline-block w-condition-invisible w--current"><div>Collections</div><div>→</div></Link>
-          <div className="h _5 link"><div className="text-block-5">{typeData.name}</div></div>
+          <Link href="/" className="hstack gap-xs link block-link"><div>Lassor.com</div><div>→</div></Link>
+          <div className="hstack gap-xs link"><div className="breadcrumb-current">{typeData.name}</div></div>
         </div>
         <div className="windowcanvas onetwogrid alert" data-grid-mode="true">
           <div className="retro-window-placeholder">
             <RetroWindow title={`${typeData.name}.txt`} disableResize initialZIndex={1}>
-              <div className="v _10">
+              <div className="vstack gap-sm">
                 {typeData.font_awesome_icon ? (
                   <div className="iconlogo">{typeData.font_awesome_icon}</div>
                 ) : null}
@@ -119,12 +118,12 @@ export default async function ProjectTypePage({ params }: { params: Promise<{ sl
               initialZIndex={2}
               autoFocus
             >
-              <div className="v _10">
+              <div className="vstack gap-sm">
                 <div className="iconlogo red"></div>
-                <a href={`mailto:feasley@lassor.com?subject=Work%20with%20Lassor`} className="paragraph w-inline-block">
-                  <div className="w-embed">{`Explore ${article} ${typeData.name} design project with Lassor?`}</div>
+                <a href={`mailto:feasley@lassor.com?subject=Work%20with%20Lassor`} className="paragraph block-link">
+                  <div>{`Explore ${article} ${typeData.name} design project with Lassor?`}</div>
                 </a>
-                <a href={`mailto:feasley@lassor.com?subject=Positive%20Vibes`} className="h _20 w-inline-block">
+                <a href={`mailto:feasley@lassor.com?subject=Positive%20Vibes`} className="hstack gap-lg block-link">
                   <div className="paragraph button">Yes</div>
                   <div className="paragraph button">No</div>
                   <div className="paragraph button">OK</div>
@@ -134,18 +133,18 @@ export default async function ProjectTypePage({ params }: { params: Promise<{ sl
             </RetroWindow>
           </div>
         </div>
-        <div className="windowcanvas w-dyn-list">
-          <div role="list" className="desktopgrid w-dyn-items">
+        <div className="windowcanvas">
+          <div role="list" className="desktopgrid">
             {projects.map((p) => (
-              <div key={p.id} role="listitem" className="retro-window-placeholder w-dyn-item">
+              <div key={p.id} role="listitem" className="retro-window-placeholder">
                 <div id="draggable-window" className="retro-window">
                   <div className="window-bar">
                     <div className="paragraph wide">{p.name}</div>
                     <div className="x-out">×</div>
                   </div>
                   <div className="window-content-wrapper">
-                    <Link href={`/work/${p.slug}`} className="window-content w-inline-block">
-                      <div className="v _10">
+                    <Link href={`/work/${p.slug}`} className="window-content block-link">
+                      <div className="vstack gap-sm">
                         {p.description ? <div className="paragraph maxht">{p.description}</div> : null}
                         <div className="paragraph mxht learn-more">learn more →</div>
                       </div>

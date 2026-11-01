@@ -1,6 +1,6 @@
 # Lassor.com
 
-Next.js 15 app that hydrates Lassor’s Webflow export, fetches live content from Supabase, and now ships with a fully authenticated `/admin` dashboard for managing projects (CRUD + uploads + preview).
+Next.js 15 app for Lassor’s original retro-desktop portfolio (served under `/original`). Public pages are React server components that read live content from Supabase and are styled by `app/styles/site.css`; a fully authenticated `/admin` dashboard manages projects (CRUD + uploads + preview).
 
 ## Admin dashboard
 

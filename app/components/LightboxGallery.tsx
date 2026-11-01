@@ -97,8 +97,8 @@ function GalleryThumbnail({
 
 export default function LightboxGallery({
   images,
-  itemClassName = 'collection-item w-dyn-item w-dyn-repeater-item',
-  linkClassName = 'lightbox-link w-inline-block',
+  itemClassName = 'collection-item',
+  linkClassName = 'lightbox-link block-link',
 }: LightboxGalleryProps) {
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
@@ -129,7 +129,7 @@ export default function LightboxGallery({
   const safeIndex = Math.max(0, Math.min(index, images.length - 1));
   return (
     <>
-      <div className="collection-list w-dyn-items">
+      <div className="collection-list">
         {images.map((url, i) => (
           <div key={i} className={itemClassName}>
             <GalleryThumbnail

@@ -24,7 +24,7 @@ export default async function ProjectTypesIndex() {
             </div>
             <div className="window-content-wrapper">
               <div className="window-content">
-                <div className="v _5">
+                <div className="vstack gap-xs">
                   {t.category ? <p className="paragraph mxht">{t.category}</p> : null}
                   <div className="paragraph mxht learn-more">
                     <Link href={`/project-types/${t.slug}`}>view projects →</Link>

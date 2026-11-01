@@ -38,42 +38,7 @@ export async function listFolderLinks(
     throw new ApiError('Failed to load folder links', 500, error.message);
   }
 
-  // Debug: Log raw database data
-  console.log('🔍 listFolderLinks - Raw DB data:', data);
-  if (data) {
-    data.forEach((row, index) => {
-      console.log(`🔍 listFolderLinks - Raw DB Row ${index}:`, {
-        id: row.id,
-        label: row.label,
-        icon: row.icon,
-        iconType: typeof row.icon,
-        iconLength: row.icon?.length,
-        iconCharCodes: row.icon ? Array.from(row.icon).map(c => `U+${c.charCodeAt(0).toString(16).toUpperCase().padStart(4, '0')}`) : null,
-        iconJSON: JSON.stringify(row.icon),
-        href: row.href,
-        external: row.external,
-        display_order: row.display_order,
-      });
-    });
-  }
-
-  const folderLinks = (data ?? []).map(toFolderLink);
-  
-  // Debug: Log converted folder links
-  console.log('🔍 listFolderLinks - Converted folder links:', folderLinks);
-  folderLinks.forEach((link, index) => {
-    console.log(`🔍 listFolderLinks - Converted Link ${index}:`, {
-      id: link.id,
-      label: link.label,
-      icon: link.icon,
-      iconType: typeof link.icon,
-      iconLength: link.icon?.length,
-      iconCharCodes: link.icon ? Array.from(link.icon).map(c => `U+${c.charCodeAt(0).toString(16).toUpperCase().padStart(4, '0')}`) : null,
-      iconJSON: JSON.stringify(link.icon),
-    });
-  });
-
-  return folderLinks;
+  return (data ?? []).map(toFolderLink);
 }
 
 export async function updateFolderLink(
