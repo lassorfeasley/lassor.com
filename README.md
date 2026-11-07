@@ -1,5 +1,16 @@
 # Lassor.com
 
+![Lassor.com homepage](docs/screenshot.png)
+
+The code behind my portfolio site, with a Supabase-backed admin for managing projects.
+
+**Live:** [lassor.com](https://www.lassor.com)  
+**Stack:** Next.js 15, TypeScript, Tailwind, Supabase, Vercel
+
+---
+
+## How it works
+
 Next.js 15 app for Lassor’s original retro-desktop portfolio (served under `/original`). Public pages are React server components that read live content from Supabase and are styled by `app/styles/site.css`; a fully authenticated `/admin` dashboard manages projects (CRUD + uploads + preview).
 
 ## Admin dashboard
