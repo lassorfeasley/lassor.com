@@ -140,6 +140,9 @@ export default function HomeDesktop({
           <a href="mailto:feasley@lassor.com?subject=Positive%20vibes" className="plain-link block-link">
             <div className="icon"></div>
           </a>
+          <a href="https://github.com/lassorfeasley" target="_blank" rel="noreferrer" className="plain-link block-link" aria-label="GitHub">
+            <div className="icon"><i className="fa-brands fa-github" /></div>
+          </a>
         </div>
       </header>
 
