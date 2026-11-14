@@ -9,6 +9,7 @@ export const defaultFolderLinks: FolderLink[] = [
   { id: '6', label: 'LinkedIn', icon: '\uf0c1', href: 'https://www.linkedin.com/in/lassor/', external: true, displayOrder: 6 },
   { id: '7', label: 'Industrial design', icon: '\uf546', href: '/project-types/industrial-design', external: false, displayOrder: 7 },
   { id: '8', label: 'Seatback Safety', icon: '\uf072', href: 'https://www.lassor.com/projects/seatback-safety', external: true, displayOrder: 8 },
+  { id: '9', label: 'GitHub', icon: '\uf121', href: 'https://github.com/lassorfeasley', external: true, displayOrder: 9 },
 ];
 
 export function mergeLinksWithDefaults(dbLinks: FolderLink[] | null | undefined): FolderLink[] {
